@@ -30,10 +30,11 @@ def add_new_ID(whitelist):
 
 def write_file(whitelist):
     """写入白名单文件"""
-    with open(whitelist_path, 'w') as wl:
-        wl.write('')
+    open(whitelist_path, 'w').close()
+    with open(whitelist_path, 'a') as wl:
         for ID in whitelist:
-            wl.write('{}\n'.format(ID))
+            if ID != '':
+                wl.write('{}\n'.format(ID))
 
 
 State = False
