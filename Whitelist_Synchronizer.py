@@ -40,10 +40,11 @@ def write_file(whitelist):
 State = False
 def on_info(server, info):
     global State
-    if info.content == command:
+    if info.content == command and info.is_player:
         get_whitelist(server)
         State = True
         time.sleep(1)
         State = False
+        server.reply(info, '§a白名单同步完成')
     if info.content.startswith('Whitelist: [') and not info.is_player and State:
         write_file(add_new_ID(server_output_to_list(info)))
